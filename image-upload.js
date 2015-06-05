@@ -21,3 +21,8 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+
+
+var Images = new FS.Collection("images", {
+  stores: [new FS.Store.FileSystem("images", {path: "~/uploads"})]
+});
