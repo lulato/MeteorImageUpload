@@ -5,13 +5,14 @@
 # but you can also edit it by hand.
 
 meteor-platform
-cfs:standard-packages
-cfs:filesystem
-cfs:s3
+
 coffeescript
-cfs:graphicsmagick
-cfs:gridfs
 iron:router
 sacha:spin
 twbs:bootstrap
 chrismbeckett:toastr
+cfs:standard-packages
+cfs:gridfs
+cfs:s3
+raix:ui-dropped-event
+reactive-var

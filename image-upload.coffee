@@ -1,48 +1,48 @@
-if Meteor.isClient
+# if Meteor.isClient
 
-  # Template Events
-  Template.my_template.events
-    'change .profile-image': (event, template) ->
-      files = event.target.files
-      i = 0
-      ln = files.length
+#   # Template Events
+#   Template.my_template.events
+#     'change .profile-image': (event, template) ->
+#       files = event.target.files
+#       i = 0
+#       ln = files.length
 
-      while i < ln
-        Images.insert files[i], (err, fileObj) ->
-          console.log fileObj
-        i++
-      return
+#       while i < ln
+#         Images.insert files[i], (err, fileObj) ->
+#           console.log fileObj
+#         i++
+#       return
 
-  Template.imageView.helpers images: ->
-    Images.find()
+#   Template.imageView.helpers images: ->
+#     Images.find()
 
 
-if Meteor.isServer
-  Meteor.startup ->
+# if Meteor.isServer
+#   Meteor.startup ->
 
-    # FS Collection
-    profileThumbsStore = new FS.Store.S3('thumb',
-      accessKeyId     : 'AKIAJVOYXK4HVIZCPBWQ'
-      secretAccessKey : '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'
-      bucket          : 'meteor-file-uploader'
-      folder          : 'thumb'
-      transformWrite  : (fileObj, readStream, writeStream) ->
-        gm(readStream, fileObj.name()).resize("100", "100").stream().pipe writeStream
-        return
-    )
+#     # FS Collection
+#     profileThumbsStore = new FS.Store.S3('thumb',
+#       accessKeyId     : 'AKIAJVOYXK4HVIZCPBWQ'
+#       secretAccessKey : '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'
+#       bucket          : 'meteor-file-uploader'
+#       folder          : 'thumb'
+#       transformWrite  : (fileObj, readStream, writeStream) ->
+#         gm(readStream, fileObj.name()).resize("100", "100").stream().pipe writeStream
+#         return
+#     )
      
-    profileStore = new FS.Store.S3('original',
-      accessKeyId     : 'AKIAJVOYXK4HVIZCPBWQ'
-      secretAccessKey : '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'
-      bucket          : 'meteor-file-uploader'
-      folder          : 'original'
-    )
+#     profileStore = new FS.Store.S3('original',
+#       accessKeyId     : 'AKIAJVOYXK4HVIZCPBWQ'
+#       secretAccessKey : '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'
+#       bucket          : 'meteor-file-uploader'
+#       folder          : 'original'
+#     )
      
-    @Images = new FS.Collection('profiles',
-      stores: [profileStore, profileThumbsStore]
-    )
+#     @Images = new FS.Collection('profiles',
+#       stores: [profileStore, profileThumbsStore]
+#     )
 
-    return
+#     return
 
 
 
