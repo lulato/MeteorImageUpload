@@ -16,3 +16,6 @@ cfs:gridfs
 cfs:s3
 raix:ui-dropped-event
 reactive-var
+accounts-password
+ian:accounts-ui-bootstrap-3
+msavin:mongol

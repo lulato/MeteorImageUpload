@@ -1,5 +1,9 @@
 <template name="home">
-  {{> dropzone}}
+  <!-- show drop zone if signed in -->
+  {{#if currentUser}}
+    {{> dropzone}}
+  {{/if}}
+
 
   {{#each images}}
     {{> image}}

@@ -35,7 +35,7 @@ if (Meteor.isClient) {
 
 // Allow rules
 Images.allow({
-  insert: function() { return true; },
-  update: function() { return true; },
+  insert: function(userId) { return userId != null; },
+  update: function(userId) { return userId != null; },
   download: function() { return true; }
 });
