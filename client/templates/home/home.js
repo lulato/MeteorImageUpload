@@ -5,9 +5,11 @@ Template.home.created = function() {
   self.limit.set(parseInt(Meteor.settings.public.recordsPerPage));
   
   Tracker.autorun(function() {
-    Meteor.subscribe('images', self.limit.get());
-  });
+    // Meteor.subscribe('images', self.limit.get());
+    Meteor.subscribe('images', self.limit.get(), Router.current().params.userSlug);
+  })
 }
+
 
 Template.home.rendered = function() {
   var self = this;
@@ -19,9 +21,11 @@ Template.home.rendered = function() {
   });
 }
 
+
+
 Template.home.helpers({
   'images': function() {
-    return Images.find();
+    return Images.find({}, {sort:{uploadedAt:-1}});
   }
 });
 
@@ -30,3 +34,4 @@ var incrementLimit = function(templateInstance) {
     parseInt(Meteor.settings.public.recordsPerPage);
   templateInstance.limit.set(newLimit);
 }
+

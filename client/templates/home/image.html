@@ -1,4 +1,26 @@
 <template name="image">
+  <!-- image info -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="image-info">
+        {{#if ownImage}}
+          <a class="delete-image">
+            <i class="fa fa-trash fa-2x"></i>
+          </a>
+        {{/if}}
+
+        Posted on: {{postDate}} 
+
+        Posted by: 
+        <a class="user-link" href="{{pathFor route='userPage' userSlug=this.userSlug}}">
+          {{username}}
+        </a>
+
+      </div> 
+    </div>
+  </div>
+
+  <!-- the image -->
   <div class="row">
     <div class="col-md-12">
       <a href="{{url}}" target="_blank" class="thumbnail">
@@ -7,3 +29,6 @@
     </div>
   </div>
 </template>
+
+
+
